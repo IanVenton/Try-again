@@ -5,7 +5,11 @@ export default {
     './src/**/*.{js,jsx,ts,tsx}', // Scan all JS, JSX, TS, and TSX files in the src directory
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'], // Add the Poppins font
+      },
+    },
   },
   plugins: [],
 };
