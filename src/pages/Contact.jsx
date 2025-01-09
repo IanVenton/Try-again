@@ -1,26 +1,28 @@
-import React, { Suspense, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
-import Fox from "../models/Fox";
-import { Loader } from "@react-three/drei";
-import useAlert from "../hooks/useAlert.js";
-import Alert from "../components/Alert.jsx";
+import { Suspense, useRef, useState } from "react";
+
+import { Fox } from "../models/Fox.jsx";
+import useAlert from "../hooks/useAlert";
+import { Alert, Loader } from "../components";
 
 const Contact = () => {
-    const formRef = useRef(null);
+    const formRef = useRef();
     const [form, setForm] = useState({ name: "", email: "", message: "" });
-    const [isLoading, setIsLoading] = useState(false);
+    const { alert, showAlert, hideAlert } = useAlert();
+    const [loading, setLoading] = useState(false);
     const [currentAnimation, setCurrentAnimation] = useState("idle");
 
-    const { alert, showAlert, hideAlert } = useAlert();
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+    const handleChange = ({ target: { name, value } }) => {
+        setForm({ ...form, [name]: value });
     };
+
+    const handleFocus = () => setCurrentAnimation("walk");
+    const handleBlur = () => setCurrentAnimation("idle");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsLoading(true);
+        setLoading(true);
         setCurrentAnimation("hit");
 
         emailjs
@@ -29,45 +31,44 @@ const Contact = () => {
                 import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
                 {
                     from_name: form.name,
-                    to_name: "Ian",
+                    to_name: "JavaScript Mastery",
                     from_email: form.email,
                     to_email: "ianventon@gmail.com",
                     message: form.message,
                 },
                 import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
             )
-            .then(() => {
-                setIsLoading(false);
-                showAlert({
-                    show: true,
-                    text: "Message successfully sent",
-                    type: "success",
-                });
+            .then(
+                () => {
+                    setLoading(false);
+                    showAlert({
+                        show: true,
+                        text: "Thank you for your message 😃",
+                        type: "success",
+                    });
 
-                setTimeout(() => {
-                    hideAlert();
+                    setTimeout(() => {
+                        hideAlert(false);
+                        setCurrentAnimation("idle");
+                        setForm({
+                            name: "",
+                            email: "",
+                            message: "",
+                        });
+                    }, [3000]);
+                },
+                (error) => {
+                    setLoading(false);
+                    console.error(error);
                     setCurrentAnimation("idle");
-                    setForm({ name: "", email: "", message: "" });
-                }, 3000);
-            })
-            .catch((error) => {
-                setIsLoading(false);
-                setCurrentAnimation("idle");
-                console.error(error);
-                showAlert({
-                    show: true,
-                    text: "Message failed to send",
-                    type: "danger",
-                });
-            });
-    };
 
-    const handleFocus = () => {
-        setCurrentAnimation("walk");
-    };
-
-    const handleBlur = () => {
-        setCurrentAnimation("idle");
+                    showAlert({
+                        show: true,
+                        text: "I didn't receive your message 😢",
+                        type: "danger",
+                    });
+                }
+            );
     };
 
     return (
@@ -75,16 +76,20 @@ const Contact = () => {
             {alert.show && <Alert {...alert} />}
 
             <div className="flex-1 min-w-[50%] flex flex-col">
-                <h1 className="text-5xl font-bold mb-8">Contact Me</h1>
+                <h1 className="head-text">Contact Me</h1>
 
-                <form className="w-full flex flex-col gap-7 mt-14" onSubmit={handleSubmit}>
-                    <label className="text-black-500 font-semibold flex flex-col gap-2">
+                <form
+                    ref={formRef}
+                    onSubmit={handleSubmit}
+                    className="w-full flex flex-col gap-6 mt-10"
+                >
+                    <label className="text-black-500 font-semibold flex flex-col gap-1">
                         Name
                         <input
                             type="text"
                             name="name"
-                            className="border border-gray-300 rounded-md p-2"
-                            placeholder="John Smith"
+                            className="border border-gray-300 rounded-md p-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="John"
                             required
                             value={form.name}
                             onChange={handleChange}
@@ -92,13 +97,13 @@ const Contact = () => {
                             onBlur={handleBlur}
                         />
                     </label>
-                    <label className="text-black-500 font-semibold flex flex-col gap-2">
+                    <label className="text-black-500 font-semibold flex flex-col gap-1">
                         Email
                         <input
                             type="email"
                             name="email"
-                            className="border border-gray-300 rounded-md p-2"
-                            placeholder="JohnSmith@gmail.com"
+                            className="border border-gray-300 rounded-md p-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="John@gmail.com"
                             required
                             value={form.email}
                             onChange={handleChange}
@@ -106,28 +111,26 @@ const Contact = () => {
                             onBlur={handleBlur}
                         />
                     </label>
-                    <label className="text-black-500 font-semibold flex flex-col gap-2">
+                    <label className="text-black-500 font-semibold flex flex-col gap-1">
                         Your Message
                         <textarea
                             name="message"
-                            rows={4}
-                            className="border border-gray-300 rounded-md p-2"
-                            placeholder="Let me know what I can do to help!"
-                            required
+                            rows="4"
+                            className="border border-gray-300 rounded-md p-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Your Message here..."
                             value={form.message}
                             onChange={handleChange}
                             onFocus={handleFocus}
                             onBlur={handleBlur}
                         />
                     </label>
+
                     <button
                         type="submit"
-                        className="btn border border-gray-300 rounded-md p-2 bg-blue-500 text-white"
-                        disabled={isLoading}
-                        onFocus={handleFocus}
-                        onBlur={handleBlur}
+                        disabled={loading}
+                        className={`py-2 px-4 rounded-md text-white font-semibold ${loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"} focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     >
-                        {isLoading ? "Sending..." : "Send Message"}
+                        {loading ? "Sending..." : "Submit"}
                     </button>
                 </form>
             </div>
@@ -141,13 +144,21 @@ const Contact = () => {
                         far: 1000,
                     }}
                 >
-                    <directionalLight intensity={2.5} position={[0, 0, 1]} />
-                    <ambientLight intensity={-0.5} />
+                    <directionalLight position={[0, 0, 1]} intensity={2.5} />
+                    <ambientLight intensity={1} />
+                    <pointLight position={[5, 10, 0]} intensity={2} />
+                    <spotLight
+                        position={[10, 10, 10]}
+                        angle={0.15}
+                        penumbra={1}
+                        intensity={2}
+                    />
+
                     <Suspense fallback={<Loader />}>
                         <Fox
                             currentAnimation={currentAnimation}
                             position={[0.5, 0.35, 0]}
-                            rotation={[12.6, -0.6, 0]}
+                            rotation={[12.629, -0.6, 0]}
                             scale={[0.5, 0.5, 0.5]}
                         />
                     </Suspense>
