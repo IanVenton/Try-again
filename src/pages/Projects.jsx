@@ -15,11 +15,7 @@ const Projects = () => {
             </h1>
 
             <p className='text-slate-500 mt-2 leading-relaxed'>
-              TODO: EDIT INFORMATION ON THIS PAGE TO FIT YOUR PROJECTS:
-                I wanna put the research stuff on the About section of my webpage and we will keep it
-                like this through different builds. EVERYTHING ELSE BELOW ALONG WITH WORK EXPERINCE NEEDS TO BE REPLACED AS WE HAVE
-                A DEFAULT Constants folder/index.js which holds all of our information check to see what is okay and not okay to add to the
-                site.
+
             </p>
 
             <div className='flex flex-wrap my-20 gap-16'>

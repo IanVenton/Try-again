@@ -111,57 +111,31 @@ export const skills = [
 
 export const experiences = [
     {
-        title: "React.js Developer",
-        company_name: "Starbucks",
-        icon: starbucks,
-        iconBg: "#accbe1",
-        date: "March 2020 - April 2021",
+        title: "Teaching Assistant - CSC 212",
+        company_name: "SUNY Oswego",
+        icon: '',
+        iconBg: "#d1e7dd",
+        date: "Spring 2024 - Present",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
+            "Supported students in mastering foundational programming concepts in Java and data structures.",
+            "Designed a bonus programming assignment 'Game of War' to help students practice object-oriented principles.",
+            "Led lab sessions, graded assignments, and held weekly office hours to provide personalized guidance.",
+            "Collaborated with the professor to continuously improve course delivery and content."
+        ]
     },
     {
-        title: "React Native Developer",
-        company_name: "Tesla",
-        icon: tesla,
-        iconBg: "#fbc3bc",
-        date: "Jan 2021 - Feb 2022",
+        title: "Research Assistant - TCAS for X-Plane 10",
+        company_name: "SUNY Oswego",
+        icon: "",
+        iconBg: "#f0ead6",
+        date: "Summer 2024 - Winter 2024",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-    },
-    {
-        title: "Web Developer",
-        company_name: "Shopify",
-        icon: shopify,
-        iconBg: "#b7e4c7",
-        date: "Jan 2022 - Jan 2023",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-    },
-    {
-        title: "Full stack Developer",
-        company_name: "Meta",
-        icon: meta,
-        iconBg: "#a2d2ff",
-        date: "Jan 2023 - Present",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-    },
+            "Collaborated with faculty and peers to develop a Traffic Collision Avoidance System (TCAS) in X-Plane 10.",
+            "Simulated air traffic scenarios and tested TCAS responsiveness using real-time flight data.",
+            "Implemented logic to detect and respond to potential airspace conflicts for virtual aircraft.",
+            "Gained experience in flight dynamics, real-time systems, and aviation software tools."
+        ]
+    }
 ];
 
 export const socialLinks = [
@@ -173,12 +147,12 @@ export const socialLinks = [
     {
         name: 'GitHub',
         iconUrl: github,
-        link: 'https://github.com/YourGitHubUsername',
+        link: 'https://github.com/IanVenton',
     },
     {
         name: 'LinkedIn',
         iconUrl: linkedin,
-        link: 'https://www.linkedin.com/in/YourLinkedInUsername',
+        link: 'https://www.linkedin.com/in/ian-venton-1b8877338/',
     }
 ];
 
@@ -186,43 +160,25 @@ export const projects = [
     {
         iconUrl: pricewise,
         theme: 'btn-back-red',
-        name: 'Amazon Price Tracker',
-        description: 'Developed a web application that tracks and notifies users of price changes for products on Amazon, helping users find the best deals.',
-        link: 'https://github.com/adrianhajdin/pricewise',
+        name: 'The Ultimate Dad App (HopHacks 2024)',
+        description:
+            'Built with Svelte and Google Maps API, this web app lets users draw a polygon over real-world spaces (e.g., yards, driveways) and calculates the optimal path across the area. Integrated map zoom, polygon drawing, and traversal pathfinding based on user-defined inputs.',
+        link: 'https://devpost.com/software/ultimate-dad-app?ref_content=my-projects-tab&ref_feature=my_projects',
     },
     {
         iconUrl: threads,
         theme: 'btn-back-green',
-        name: 'Full Stack Threads Clone',
-        description: 'Created a full-stack replica of the popular discussion platform "Threads," enabling users to post and engage in threaded conversations.',
-        link: 'https://github.com/adrianhajdin/threads',
+        name: 'Dad Connections (WolfJam 2024)',
+        description:
+            'A quirky dating simulator built in under 24 hours using C and the Raylib graphics library. Focused on narrative branching, sprite control, and real-time character interaction loops.',
+        link: 'https://prestosilver.itch.io/daddy',
     },
     {
         iconUrl: car,
         theme: 'btn-back-blue',
-        name: 'Car Finding App',
-        description: 'Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.',
-        link: 'https://github.com/adrianhajdin/project_next13_car_showcase',
+        name: 'Poke Profile (Ongoing)',
+        description:
+            'An online platform for Pokémon fans to share collections, deck builds, and track TCG/VGC stats. Backend in Java (Spring Boot), PostgreSQL for data, and a modern frontend in TypeScript.',
+        link: '',
     },
-    {
-        iconUrl: snapgram,
-        theme: 'btn-back-pink',
-        name: 'Full Stack Instagram Clone',
-        description: 'Built a complete clone of Instagram, allowing users to share photos and connect with friends in a familiar social media environment.',
-        link: 'https://github.com/adrianhajdin/social_media_app',
-    },
-    {
-        iconUrl: estate,
-        theme: 'btn-back-black',
-        name: 'Real-Estate Application',
-        description: 'Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.',
-        link: 'https://github.com/adrianhajdin/projects_realestate',
-    },
-    {
-        iconUrl: summiz,
-        theme: 'btn-back-yellow',
-        name: 'AI Summarizer Application',
-        description: 'App that leverages AI to automatically generate concise & informative summaries from lengthy text content, or blogs.',
-        link: 'https://github.com/adrianhajdin/project_ai_summarizer',
-    }
 ];
